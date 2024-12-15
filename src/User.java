@@ -1,10 +1,10 @@
 public class User {
 
-	String name;
-	String phoneNum;
-	String email;
-	String accountType;
-	Account userAccount;
+	private String name;
+	private String phoneNum;
+	private String email;
+	private String accountType;
+	private Account userAccount;
 	
 	public User(String name, String phoneNum, String email, String accountType) {
 		this.name = name;
@@ -57,6 +57,10 @@ public class User {
 
 	public Account getUserAccount() {
 		return userAccount;
+	}
+
+	public void setUserAccount(Account userAccount) {
+		this.userAccount = userAccount;
 	}
 		
 	public void reportIncident() {

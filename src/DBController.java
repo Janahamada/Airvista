@@ -50,7 +50,7 @@ public class DBController {
         return false;
     }
     public static void storeUserInfo(User user) { 
-        String query = "INSERT INTO user (name, phoneNum, email, username, password, type) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO user (name, phoneNum, email, username, password, type, approved) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, user.getName());
             statement.setString(2, user.getPhoneNum());
@@ -58,6 +58,7 @@ public class DBController {
             statement.setString(4, user.getUserAccount().getUserName());
             statement.setString(5, user.getUserAccount().getPassword());
             statement.setString(6, user.getAccountType());
+            statement.setBoolean(7, user.getUserAccount().isApproved());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,7 +89,7 @@ public class DBController {
                 String email = resultSet.getString("email");
                 String type = resultSet.getString("type");
                 User user = new User(name, phoneNum, email, type);
-                user.userAccount = new Account(username, getPassword(username), type);
+                user.setUserAccount(new Account(username, getPassword(username), type));
                 return user;
             }
         } catch (SQLException e) {
@@ -112,4 +113,15 @@ public class DBController {
         }
         return false;
     }
+
+    public static void UpdateApproval(String username) {
+        String query = "UPDATE user SET approved = 1 WHERE username = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, username);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
 }

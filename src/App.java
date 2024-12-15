@@ -12,8 +12,9 @@ public class App {
     public static void main(String[] args) {
         DBController.connectToDatabase();
         //User.createAccount("Mohammad Tarek", "01094281972", "mohtha@gmail.com" , "mohtarek9", "Mm12345", "Manager");
-        User user = User.login("mohtarek9", "Mm12345");
-        System.out.println(user.getName());
+         User user = User.login("mohtarek9", "Mm12345");
+         Manager.approveAccount(user);
+         System.out.println("User approved: " + user.getUserAccount().isApproved());
     }
 }
 

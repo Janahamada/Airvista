@@ -1,20 +1,15 @@
 public class Account {
-	String userName;
-	String password;
-	String AccountID;
-	String type;
-	boolean approved = false;
+	private String userName;
+	private String password;
+	private String AccountID;
+	private String type;
+	private boolean approved;
 	
 	public Account(String userName, String password, String type) {
 		this.userName = userName;
 		this.password = password;
 		this.type = type;
-		
-		//code to generate account id
-		
-		
-		
-		/*****************************************************************************************/
+		this.approved = false;
 	}
 	public String getUserName() {
 		return userName;
@@ -75,8 +70,23 @@ public class Account {
 		/*****************************************************************************************/
 		//if all data valid create user & Account object
 		if(valid && uniqueUsername) {
-			User newUser = new User(name, phoneNum, email, type);
-			newUser.userAccount = new Account(username, password, type);
+			User newUser = null;
+			if(type.equals("Manager")) {
+				 newUser = new Manager(name, phoneNum, email, type);
+			}
+			// else if(type.equals("Receptionist")) {
+			// 	 newUser = new Receptionist(name, phoneNum, email, type);
+			// }
+			// else if(type.equals("BoardingStaff")) {
+			// 	 newUser = new BoardingStaff(name, phoneNum, email, type);
+			// }
+			// else if(type.equals("AirTrafficController")) {
+			// 	 newUser = new AirTrafficController(name, phoneNum, email, type);
+			// }
+			// else if(type.equals("ProblemManager")) {
+			// 	 newUser = new ProblemManager(name, phoneNum, email, type);
+			// }
+			newUser.setUserAccount(new Account(username, password, type));
 			DBController.storeUserInfo(newUser);
 			return 0; //for success
 		}
@@ -97,12 +107,10 @@ public class Account {
 			}
 			return null;
 			
-			
-			/* for valid login:
-			 * load the user and account info from the DB, and return the user object
-			 * 
-			 * DB.getUserInfo(username) -> returns User object
-			 */
+		}
+		public static void approveAccount(User user) {
+			user.getUserAccount().approved = true;
+			DBController.UpdateApproval(user.getUserAccount().getUserName());
 		}
 		
 	}
