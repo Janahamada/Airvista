@@ -100,7 +100,8 @@ public class DBController {
         }
         return null;
     }
-    public static boolean searchUser(String username) {
+    //redundant function
+    /*public static boolean searchUser(String username) {
         String query = "SELECT COUNT(*) FROM user WHERE username = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, username);
@@ -114,7 +115,7 @@ public class DBController {
             e.printStackTrace();
         }
         return false;
-    }
+    }*/
 
     public static void UpdateApproval(String username) {
         String query = "UPDATE user SET approved = 1 WHERE username = ?";
