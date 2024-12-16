@@ -88,8 +88,10 @@ public class DBController {
                 String phoneNum = resultSet.getString("phoneNum");
                 String email = resultSet.getString("email");
                 String type = resultSet.getString("type");
+                boolean approved= resultSet.getBoolean("approved");
                 User user = new User(name, phoneNum, email, type);
                 user.setUserAccount(new Account(username, getPassword(username), type));
+                user.getUserAccount().setApproved(approved);
                 return user;
             }
         } catch (SQLException e) {
