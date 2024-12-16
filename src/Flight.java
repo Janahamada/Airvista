@@ -12,7 +12,7 @@ public class Flight {
     private ArrayList<Passenger> passengers = new ArrayList<>();
 
     // Static map to store flights
-    private static HashMap<String, Flight> flights = new HashMap<>();
+   // private static HashMap<String, Flight> flights = new HashMap<>();
 
     public Flight(String flightId, String flightName, String flightSchedule) {
         this.flightId = flightId;
