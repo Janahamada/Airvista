@@ -98,7 +98,7 @@ public class Account {
 
 		public static User login(String username, String password) {
 			String dbpassword = "";
-			 if(DBController.searchUser(username)){
+			 if(!DBController.findUsername(username)){
 			  		dbpassword = DBController.getPassword(username);
 					//System.out.println(dbpassword);
 			  }
