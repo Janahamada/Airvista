@@ -74,13 +74,13 @@ public class Account {
 			if(type.equals("Manager")) {
 				 newUser = new Manager(name, phoneNum, email, type);
 			}
-			// else if(type.equals("Receptionist")) {
-			// 	 newUser = new Receptionist(name, phoneNum, email, type);
-			// }
-			// else if(type.equals("BoardingStaff")) {
-			// 	 newUser = new BoardingStaff(name, phoneNum, email, type);
-			// }
-			// else if(type.equals("AirTrafficController")) {
+			else if(type.equals("Receptionist")) {
+				 newUser = new Receptionist(name, phoneNum, email, type);
+			}
+			else if(type.equals("BoardingStaff")) {
+				 newUser = new BoardingStaff(name, phoneNum, email, type);
+			}
+			//else if(type.equals("AirTrafficController")) {
 			// 	 newUser = new AirTrafficController(name, phoneNum, email, type);
 			// }
 			// else if(type.equals("ProblemManager")) {

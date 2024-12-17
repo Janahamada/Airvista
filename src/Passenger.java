@@ -1,16 +1,21 @@
-package airvista;
+//package airvista;
 public class Passenger {
     private int passengerID;
     private boolean boardingStatus;
     private boolean bookingStatus;
     private Boarding board;
     private String name;
+    private Flight flight;
     private static int passengerCounter;
 
-    public Passenger(String name) {
+    public Passenger(String name, Flight flight) { //done
         passengerCounter++;
         this.passengerID=passengerCounter;
         this.name = name;
+        this.boardingStatus = false;
+        this.bookingStatus = false;
+        this.flight = flight;
+        DBController.storePassengerInfo(this);
     }
 
     public boolean getBookingStatus() {
@@ -50,6 +55,14 @@ public class Passenger {
 
     public void setBoard(Boarding board) {
         this.board = board;
+    }
+
+    public Flight getFlight() {
+        return flight;
+    }
+
+    public void setFlight(Flight flight) {
+        this.flight = flight;
     }
     
     @Override

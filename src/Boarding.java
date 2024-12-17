@@ -1,4 +1,4 @@
-package airvista;
+//package airvista;
 
 public class Boarding {
     private int boardingID;
@@ -27,15 +27,13 @@ public class Boarding {
         this.GateNumber = GateNumber;
     }
     
-    public void board(Flight flight, int passengerID) {       
+    public void board(Flight flight, int passengerID) {   //done     
     boolean passengerFound = false;
-    for (Passenger passenger : flight.getPassengers()) {
-        if (passenger.getPassengerID() == passengerID) {
-            passenger.setBoardingStatus(true);
-            passengerFound = true;
-            System.out.println("Passenger " + passengerID + " successfully boarded.");
-            break;
-        }
+    if(DBController.getBookingStatus(passengerID)){
+        Passenger passenger = DBController.getPassengerInfo(passengerID);
+        passenger.setBoardingStatus(true);
+        passengerFound = true;
+        DBController.changeBoardingStatus(passengerID);
     }
     if (!passengerFound) {
         System.out.println("Passenger " + passengerID + " not found on flight " + flight.getFlightId() + ".");

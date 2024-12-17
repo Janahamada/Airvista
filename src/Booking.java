@@ -1,5 +1,3 @@
-package airvista;  
-import java.util.HashMap;
 public class Booking {
 
     private String bookingId;      // Unique identifier for each booking
@@ -7,10 +5,10 @@ public class Booking {
     int passengerID;
     // Static Maps to manage data
     private static int bookingCounter = 0;
-    private static HashMap<String, Integer> passengerCountMap = new HashMap<>();
+    // private static HashMap<String, Integer> passengerCountMap = new HashMap<>();
 
     // Constructor
-    public Booking(Passenger passenger, String flightId) {
+    public Booking(Passenger passenger, String flightId) { //done
         try {
             Flight flight = Flight.getFlightById(flightId);
             if (flight == null) {
@@ -27,8 +25,6 @@ public class Booking {
 
             // Update flight and passenger status
             flight.addPassenger(passenger);
-            passenger.setBookingStatus(true);
-            incrementPassengerCount(flightId);
             System.out.println("Booking successful: " + bookingId);
         } catch (Exception e) {
             System.err.println("Error during booking: " + e.getMessage());
@@ -36,40 +32,34 @@ public class Booking {
     }
 
     // Generate a unique booking ID
-    private static String generateBookingId(String flightId, int passengerID) {
+    private static String generateBookingId(String flightId, int passengerID) { //done
         bookingCounter++;
         return "B" + bookingCounter + "-" + flightId + "-" + passengerID;
     }
 
     // Check if passenger is already booked
-    static boolean isPassengerAlreadyBooked(Passenger passenger) {
-        if(passenger.getBookingStatus()==true)
-            return true;
-        else 
-            return false;       
+    public static boolean isPassengerAlreadyBooked(Passenger passenger) { //done
+        return DBController.getBookingStatus(passenger.getPassengerID());     
 }
 
-    // Increment passenger count
-    private static void incrementPassengerCount(String flightId) {
-        passengerCountMap.put(flightId, passengerCountMap.getOrDefault(flightId, 0) + 1);
-    }
-
     // Cancel a single booking
-    public void cancelBooking(Passenger passenger ) {
+    public void cancelBooking(Passenger passenger) { //done
         if (passenger.getBookingStatus()==false) {
             System.err.println("Booking already cancelled: " + bookingId);
             return;
         }
         Flight flight = Flight.getFlightById(this.flightId);
         if (flight != null) {
-            flight.removePassenger(this.passengerID); // Remove passenger from the flight
+            flight.removePassenger(this.passengerID);
+            flight.decrementPassengerCount();
         }
         System.out.println("Booking " + bookingId + " cancelled.");
     }
 
-    // Getters
     public String getBookingId() {
         return bookingId;
     }
+
+
 } 
 
