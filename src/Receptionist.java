@@ -23,10 +23,15 @@ public class Receptionist {
 
     // Method to search for flights
     public ArrayList<Flight> searchFlight(String searchTerm) {
-        // Uses the Flight class's static method to search for flights
-        ArrayList<Flight> foundFlights = Flight.searchFlight(searchTerm);
+        System.out.println("Searching for flights matching: " + searchTerm);
+
+        // DATABASE: SELECT * FROM flights WHERE flightId LIKE ? OR flightName LIKE ?;
+        ArrayList<Flight> foundFlights = Flight.searchFlights(searchTerm);
+
         if (foundFlights.isEmpty()) {
             System.out.println("No flights found matching: " + searchTerm);
+        } else {
+            System.out.println("Flights found: " + foundFlights.size());
         }
         return foundFlights;
     }
@@ -34,14 +39,15 @@ public class Receptionist {
     // Method to book a flight for a passenger
     public void bookFlight(Passenger passenger, String flightId) {
         try {
-            // Get the flight by ID
+            // Fetch the flight from the database
             Flight flight = Flight.getFlightById(flightId);
+
             if (flight == null) {
                 System.out.println("Flight with ID " + flightId + " not found.");
                 return;
             }
 
-            // Check if the flight is cancelled
+            // Check if flight is cancelled
             if (flight.getStatus().equals("cancelled")) {
                 System.out.println("Cannot book passenger. Flight " + flightId + " is cancelled.");
                 return;
@@ -49,35 +55,43 @@ public class Receptionist {
 
             // Create the booking
             Booking booking = new Booking(passenger, flightId);
-            System.out.println("Booking successful: " + booking.getBookingId());
+
+            // DATABASE: INSERT INTO bookings (bookingId, passengerId, flightId, bookingStatus) VALUES (?, ?, ?, ?);
+            System.out.println("Booking successful. Booking ID: " + booking.getBookingId());
         } catch (Exception e) {
-            System.out.println("Error during booking: " + e.getMessage());
+            System.err.println("Error during booking: " + e.getMessage());
         }
     }
 
     // Method to remove a passenger from a flight
     public void removePassenger(String flightId, String passengerId) {
         try {
-            // Get the flight by ID
+            // Fetch the flight from the database
             Flight flight = Flight.getFlightById(flightId);
+
             if (flight == null) {
                 System.out.println("Flight with ID " + flightId + " not found.");
                 return;
             }
 
-            // Remove the passenger from the flight
+            // Remove the passenger
             flight.removePassenger(passengerId);
-            System.out.println("Passenger " + passengerId + " removed from flight " + flightId);
+
+            // DATABASE: DELETE FROM flight_passengers WHERE flightId = ? AND passengerId = ?;
+            // DATABASE: UPDATE passengers SET status = 'not booked' WHERE passengerId = ?;
+
+            System.out.println("Passenger " + passengerId + " successfully removed from flight " + flightId);
         } catch (Exception e) {
-            System.out.println("Error removing passenger: " + e.getMessage());
+            System.err.println("Error removing passenger: " + e.getMessage());
         }
     }
 
     // Method to cancel a flight and all associated bookings
     public void cancelFlight(String flightId) {
         try {
-            // Get the flight by ID
+            // Fetch the flight from the database
             Flight flight = Flight.getFlightById(flightId);
+
             if (flight == null) {
                 System.out.println("Flight with ID " + flightId + " not found.");
                 return;
@@ -85,13 +99,20 @@ public class Receptionist {
 
             // Cancel the flight
             flight.cancelFlight();
+
+            // DATABASE: UPDATE flights SET status = 'cancelled' WHERE flightId = ?;
+            // DATABASE: DELETE FROM flight_passengers WHERE flightId = ?;
+
             System.out.println("Flight " + flightId + " has been cancelled.");
 
             // Cancel all bookings for the flight
             Booking.cancelBookingsForFlight(flightId);
+
+            // DATABASE: UPDATE bookings SET bookingStatus = false WHERE flightId = ?;
+
             System.out.println("All bookings for flight " + flightId + " have been cancelled.");
         } catch (Exception e) {
-            System.out.println("Error cancelling flight: " + e.getMessage());
+            System.err.println("Error cancelling flight: " + e.getMessage());
         }
     }
 }
