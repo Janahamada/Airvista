@@ -1,5 +1,4 @@
-package AirVista;
-
+package airvista;
 import java.util.ArrayList;
 
 public class Flight {
@@ -7,7 +6,7 @@ public class Flight {
     private String flightId;
     private String flightName;
     private String flightSchedule;
-    private String status;  // "active" or "cancelled"
+    private String Desnitation;
     private ArrayList<Passenger> passengers = new ArrayList<>(); // List of passengers on the flight
 
     // Constructor
@@ -15,42 +14,30 @@ public class Flight {
         this.flightId = flightId;
         this.flightName = flightName;
         this.flightSchedule = flightSchedule;
-        this.status = "active";  // Default flight status
 
         // DATABASE: INSERT INTO flights (flightId, flightName, flightSchedule, status) VALUES (?, ?, ?, ?);
     }
 
     // Add passenger to the flight
-    public boolean addPassenger(Passenger passenger) {
-        if (!status.equals("active")) {
-            System.out.println("Cannot add passenger. Flight " + flightId + " is cancelled.");
-            return false;
-        }
+    public void addPassenger(Passenger passenger) {
         if (isPassengerAlreadyOnFlight(passenger)) {
-            System.out.println("Passenger " + passenger.getPassengerId() + " is already on flight " + flightId);
-            return false;
+            System.out.println("Passenger " + passenger.getPassengerID() + " is already on flight " + flightId);
         }
 
         passengers.add(passenger);
-        passenger.setStatus("booked");
+        passenger.setBookingStatus(true);
 
         // DATABASE: INSERT INTO flight_passengers (flightId, passengerId) VALUES (?, ?);
         // DATABASE: UPDATE passengers SET status = 'booked' WHERE passengerId = ?;
 
-        System.out.println("Passenger " + passenger.getPassengerId() + " added to flight " + flightId);
-        return true;
+        System.out.println("Passenger " + passenger.getPassengerID() + " added to flight " + flightId);
     }
 
     // Remove a passenger from the flight
-    public void removePassenger(String passengerId) {
-        if (status.equals("cancelled")) {
-            System.out.println("Cannot remove passenger. Flight " + flightId + " is cancelled.");
-            return;
-        }
-
+    public void removePassenger(int passengerID) {
         Passenger passengerToRemove = null;
         for (Passenger passenger : passengers) {
-            if (passenger.getPassengerId().equals(passengerId)) {
+            if (passenger.getPassengerID()==passengerID) {
                 passengerToRemove = passenger;
                 break;
             }
@@ -58,14 +45,14 @@ public class Flight {
 
         if (passengerToRemove != null) {
             passengers.remove(passengerToRemove);
-            passengerToRemove.setStatus("not booked");
+            passengerToRemove.setBookingStatus(false);
 
             // DATABASE: DELETE FROM flight_passengers WHERE flightId = ? AND passengerId = ?;
             // DATABASE: UPDATE passengers SET status = 'not booked' WHERE passengerId = ?;
 
-            System.out.println("Passenger " + passengerId + " removed from flight " + flightId);
+            System.out.println("Passenger " + passengerID + " removed from flight " + flightId);
         } else {
-            System.out.println("Passenger with ID " + passengerId + " not found.");
+            System.out.println("Passenger with ID " + passengerID + " not found.");
         }
     }
 
@@ -91,12 +78,6 @@ public class Flight {
 
     // Cancel the flight
     public void cancelFlight() {
-        if (status.equals("cancelled")) {
-            System.out.println("Flight " + flightId + " is already cancelled.");
-            return;
-        }
-
-        status = "cancelled";
         passengers.clear(); // Remove all passengers when cancelling
 
         // DATABASE: UPDATE flights SET status = 'cancelled' WHERE flightId = ?;
@@ -108,7 +89,7 @@ public class Flight {
     // Check if passenger is already on the flight
     private boolean isPassengerAlreadyOnFlight(Passenger passenger) {
         return passengers.stream()
-                .anyMatch(p -> p.getPassengerId().equals(passenger.getPassengerId()));
+                .anyMatch(p -> p.getPassengerID()==passenger.getPassengerID());
     }
 
     // Get flight details (useful for display)
@@ -118,7 +99,6 @@ public class Flight {
                 "flightId='" + flightId + '\'' +
                 ", flightName='" + flightName + '\'' +
                 ", flightSchedule='" + flightSchedule + '\'' +
-                ", status='" + status + '\'' +
                 ", passengersCount=" + passengers.size() +
                 '}';
     }
@@ -134,10 +114,6 @@ public class Flight {
 
     public String getFlightSchedule() {
         return flightSchedule;
-    }
-
-    public String getStatus() {
-        return status;
     }
 
     public ArrayList<Passenger> getPassengers() {

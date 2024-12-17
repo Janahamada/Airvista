@@ -3,7 +3,7 @@ package airvista;
 public class Boarding {
     private int boardingID;
     private int GateNumber;
-    private int boardingCounter;
+    private static int boardingCounter;
 
     public Boarding(int boardingID, int GateNumber) {
         this.GateNumber = GateNumber;
@@ -38,7 +38,7 @@ public class Boarding {
         }
     }
     if (!passengerFound) {
-        System.out.println("Passenger " + passengerID + " not found on flight " + flight.getFlightID() + ".");
+        System.out.println("Passenger " + passengerID + " not found on flight " + flight.getFlightId() + ".");
     }
 }
  

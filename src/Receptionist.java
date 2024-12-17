@@ -1,26 +1,12 @@
-package AirVista;
+package airvista;
 
 import java.util.ArrayList;
 
-public class Receptionist {
+public class Receptionist extends User {
 
-    // Attributes
-    private String receptionistId;
-
-    // Constructor
-    public Receptionist(String receptionistId) {
-        this.receptionistId = receptionistId;
+    public Receptionist (String name, String phoneNum, String email, String accountType) {
+        super(name,phoneNum,email,accountType);
     }
-
-    // Getters and Setters
-    public String getReceptionistId() {
-        return receptionistId;
-    }
-
-    public void setReceptionistId(String receptionistId) {
-        this.receptionistId = receptionistId;
-    }
-
     // Method to search for flights
     public ArrayList<Flight> searchFlight(String searchTerm) {
         System.out.println("Searching for flights matching: " + searchTerm);
@@ -37,7 +23,7 @@ public class Receptionist {
     }
 
     // Method to book a flight for a passenger
-    public void bookFlight(Passenger passenger, String flightId) {
+    public void bookFlight( String flightId,String passengerName) {
         try {
             // Fetch the flight from the database
             Flight flight = Flight.getFlightById(flightId);
@@ -47,13 +33,8 @@ public class Receptionist {
                 return;
             }
 
-            // Check if flight is cancelled
-            if (flight.getStatus().equals("cancelled")) {
-                System.out.println("Cannot book passenger. Flight " + flightId + " is cancelled.");
-                return;
-            }
-
             // Create the booking
+            Passenger passenger = new Passenger(passengerName);
             Booking booking = new Booking(passenger, flightId);
 
             // DATABASE: INSERT INTO bookings (bookingId, passengerId, flightId, bookingStatus) VALUES (?, ?, ?, ?);
@@ -64,7 +45,7 @@ public class Receptionist {
     }
 
     // Method to remove a passenger from a flight
-    public void removePassenger(String flightId, String passengerId) {
+    public void removePassenger(String flightId, int passengerId) {
         try {
             // Fetch the flight from the database
             Flight flight = Flight.getFlightById(flightId);
@@ -87,7 +68,7 @@ public class Receptionist {
     }
 
     // Method to cancel a flight and all associated bookings
-    public void cancelFlight(String flightId) {
+    public void cancelFlight(String flightId,Passenger passenger) {
         try {
             // Fetch the flight from the database
             Flight flight = Flight.getFlightById(flightId);
@@ -104,9 +85,6 @@ public class Receptionist {
             // DATABASE: DELETE FROM flight_passengers WHERE flightId = ?;
 
             System.out.println("Flight " + flightId + " has been cancelled.");
-
-            // Cancel all bookings for the flight
-            Booking.cancelBookingsForFlight(flightId);
 
             // DATABASE: UPDATE bookings SET bookingStatus = false WHERE flightId = ?;
 
