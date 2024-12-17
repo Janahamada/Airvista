@@ -1,17 +1,16 @@
-package airvista;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class BoardingStaff {
+public class BoardingStaff extends User  {
     private int StaffId;
-    private String name;
 
 //constructor
-    public BoardingStaff(String staffId, String name) {
+    public BoardingStaff(String name, String phoneNum, String email, String accountType, String staffId) {
+        super(name, phoneNum, email, accountType);
         this.StaffId = StaffId;
-        this.name = name;
+     
     }
 
 //setters and getters
@@ -22,60 +21,35 @@ public class BoardingStaff {
     public void setBoardingStaffID(int boardingID) {
         this.StaffId = StaffId;
     }
-
-    public String getName() {
-        return name;
+ 
+    public void displayBoardingPass(Passenger passenger) {
+        System.out.println("==============================================");
+        System.out.println("                  BOARDING PASS               ");
+        System.out.println("==============================================");
+        System.out.printf("Passenger Name   : %s%n", passenger.getPassengerName());
+        System.out.printf("Passenger ID     : %s%n", passenger.getPassengerID());
+        //System.out.printf("Flight Number    : %s%n", Flight.getFlightId());  //nezawedha?
+        System.out.println("----------------------------------------------");
+        System.out.println("  Please arrive at the gate at least 30 mins  ");
+        System.out.println("        before the scheduled departure.       ");
+        System.out.println("==============================================");
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     
-    public void printBoardingPassToFile(Passenger passenger) {
-        String fileName = passenger.getPassengerID() + "_BoardingPass.txt";
 
-        try (FileWriter writer = new FileWriter(fileName)) {
-            writer.write("==============================================\n");
-            writer.write("                  BOARDING PASS               \n");
-            writer.write("==============================================\n");
-            writer.write(String.format("Passenger Name   : %s%n", passenger.getPassengerName()));
-            writer.write(String.format("Passenger ID     : %s%n", passenger.getPassengerID()));
-            writer.write(String.format("Flight Number    : %s%n", passenger.getFlightDetails())); //mehtaga class flight
-            writer.write(String.format("Boarding Status  : %s%n", passenger.isBoardingStatus()));
-            writer.write("----------------------------------------------\n");
-            writer.write("  Please arrive at the gate at least 30 mins  \n");
-            writer.write("        before the scheduled departure.       \n");
-            writer.write("==============================================\n");
-
-            System.out.println("Boarding pass saved to file: " + fileName);
-        } catch (IOException e) {
-            System.out.println("An error occurred while saving the boarding pass.");
-            e.printStackTrace();
+public void boardPassenger(Flight flight, int passengerID, int gateNumber) { //creates object boarding for the flight and passenger and calls it 
+    // Check if flight is active
+    if (flight.getStatus().equals("active")) {
+        Boarding boarding = new Boarding(passengerID, gateNumber);
+        
+        boarding.board(flight, passengerID);
+        for (Passenger passenger : flight.getPassengers()) {
+            if (passenger.getPassengerID() == passengerID) {
+                passenger.setBoard(boarding);  // Set the boarding information for the passenger
+                break;
+            }
         }
+    } else {
+        System.out.println("Flight " + flight.getFlightId() + " is cancelled. Passenger cannot board.");
     }
-
-
-
-public void boardPassenger(Passenger passenger, Flight flight) { //mehtaga flight class
-    // input the gate number
-    Scanner scanner = new Scanner(System.in);
-    System.out.print("Enter gate number for passenger " + passenger.getPassengerName() + ": ");
-    int gateNumber = scanner.nextInt();
-
-    // Create a new Boarding object
-    Boarding boarding = new Boarding(passenger.getPassengerID(), gateNumber);
-
-    // Assign the Boarding object to the passenger
-    passenger.setBoard(boarding);
-
-    // Update the passenger's boarding status
-    passenger.setBoardingStatus(true);
-
-    // Display boarding confirmation
-    System.out.println("Passenger " + passenger.getPassengerName() + " has been successfully boarded.");
-    System.out.println("Gate Number: " + boarding.getGateNumber());
-    System.out.println("Boarding ID: " + boarding.getBoardingID());
 }
-
 }
