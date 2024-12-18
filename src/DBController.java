@@ -290,4 +290,45 @@ public class DBController {
         return 0;
     }
 
+        
+    public static List<User> getUsersToApprove(){
+    	List<User> users = new ArrayList<>();
+    	
+    	try (PreparedStatement stmt = connection.prepareStatement("SELECT * FROM user WHERE approved = false");
+                ResultSet resultSet = stmt.executeQuery()) {
+
+               while (resultSet.next()) {
+            	   String username = resultSet.getString("username");
+            	   String name = resultSet.getString("name");
+                   String phoneNum = resultSet.getString("phoneNum");
+                   String email = resultSet.getString("email");
+                   String type = resultSet.getString("type");
+                   boolean approved= resultSet.getBoolean("approved");
+                   User user = new User(name, phoneNum, email, type);
+                   user.setUserAccount(new Account(username, getPassword(username), type));
+                   user.getUserAccount().setApproved(approved);
+                   users.add(user);
+               }
+        }
+	    catch (SQLException e) {
+	        e.printStackTrace();
+	        return null;
+	    }
+
+       return users;
+    }
+    
+    public static void deleteUser(String username) {
+    	String query = "DELETE FROM user WHERE username = ?";
+
+        try (PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, username);
+            stmt.executeUpdate();
+        }
+        catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+    }
+
+
 }
