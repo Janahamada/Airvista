@@ -5,8 +5,8 @@ public class Boarding {
     private int GateNumber;
     private static int boardingCounter;
 
-    public Boarding(int boardingID, int GateNumber) {
-        this.GateNumber = GateNumber;
+    public Boarding(int boardingID) {
+        //this.GateNumber = GateNumber;
         boardingCounter++;
         this.boardingID=boardingCounter;
     }

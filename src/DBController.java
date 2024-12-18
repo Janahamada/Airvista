@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 public class DBController {
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/airvista";
     private static final String USERNAME = "root";
@@ -328,6 +329,21 @@ public class DBController {
         catch (SQLException e) {
 	        e.printStackTrace();
 	    }
+    }
+
+    public static Flight getFlightFromPassengerID(int passengerID) {
+        String query = "SELECT flightid FROM passengers WHERE passengerid = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, passengerID);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String flightId = resultSet.getString("flightid");
+                return Flight.getFlightById(flightId);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 
