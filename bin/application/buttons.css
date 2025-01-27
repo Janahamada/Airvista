@@ -1,0 +1,26 @@
+.button {
+    -fx-background-color: #06768d;
+    -fx-text-fill: black; 
+    -fx-font-size: 16px; 
+    -fx-border-radius: 20px; 
+    -fx-background-radius: 20px;
+}
+
+/* Hover effect */
+.button:hover {
+    -fx-background-color: #48D1CC;
+    -fx-text-fill: white; 
+    -fx-font-size: 16px; 
+    -fx-border-radius: 20px; 
+    -fx-background-radius: 20px;
+}
+
+/* Pressed effect */
+.button:pressed {
+    -fx-background-color: #026a81;
+    -fx-text-fill: white; 
+    -fx-font-size: 16px; 
+    -fx-border-radius: 20px; 
+    -fx-background-radius: 20px;
+    -fx-border-color: #000000;
+}

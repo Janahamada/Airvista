@@ -1,0 +1,87 @@
+#bgpane{
+	-fx-background-color: #B3B3B3;
+	-fx-opacity: 0.7;
+	-fx-border-radius: 20;
+	-fx-background-radius: 20; 
+}
+#waitingPane{
+	-fx-background-color: transparent;
+	-fx-opacity: 1;
+	-fx-border-radius: 20;
+	-fx-background-radius: 20; 
+}
+.button {
+    -fx-background-color: #06768d;
+    -fx-text-fill: black; 
+    -fx-font-size: 16px; 
+    -fx-border-radius: 20px; 
+    -fx-background-radius: 20px;
+}
+
+/* Hover effect */
+.button:hover {
+    -fx-background-color: #48D1CC;
+    -fx-text-fill: white; 
+    -fx-font-size: 16px; 
+    -fx-border-radius: 20px; 
+    -fx-background-radius: 20px;
+}
+
+/* Pressed effect */
+.button:pressed {
+    -fx-background-color: #026a81;
+    -fx-text-fill: white; 
+    -fx-font-size: 16px; 
+    -fx-border-radius: 20px; 
+    -fx-background-radius: 20px;
+    -fx-border-color: #000000;
+}
+
+/* Custom text field styles */
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-padding: 8px;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-color: #06768d;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial, sans-serif;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 1, 1);
+}
+
+/* Show border on hover */
+.text-field:hover {
+    -fx-border-width: 4;
+    -fx-border-color: #40e0d0;
+}
+
+/* Show border when focused (typing) */
+.text-field:focused {
+    -fx-border-width: 4;
+    -fx-border-color: #40e0d0;
+}
+
+.password-field {
+	-fx-background-color: #ffffff;
+    -fx-padding: 8px;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-width: 2;
+    -fx-border-color: #06768d;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial, sans-serif;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 3, 0, 1, 1);
+}
+
+/* Show border on hover */
+.password-field:hover {
+    -fx-border-width: 4;
+    -fx-border-color: #40e0d0;
+}
+
+/* Show border when focused (typing) */
+.password-field:focused {
+    -fx-border-width: 4;
+    -fx-border-color: #40e0d0;
+}

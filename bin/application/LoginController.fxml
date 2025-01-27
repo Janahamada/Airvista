@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: transparent;" stylesheets="@loginpage.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginPageController">
+   <children>
+      <MediaView fx:id="video" fitHeight="400.0" fitWidth="200.0" preserveRatio="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <AnchorPane fx:id="waitingPane" layoutX="20.0" layoutY="8.0" prefHeight="592.0" prefWidth="782.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+         
+            <Label alignment="CENTER" layoutX="2.0" layoutY="240.0" prefHeight="59.0" prefWidth="700.0" text="Waiting For Your Account to be Approved......." textAlignment="CENTER" textFill="#11434b" AnchorPane.bottomAnchor="200.8" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="-2.3999999999999773" AnchorPane.topAnchor="240.0">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="backButton" layoutX="262.0" layoutY="399.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="192.0" style="-fx-background-radius: 20;" text="Back to Welcome Page" AnchorPane.bottomAnchor="74.6" AnchorPane.leftAnchor="262.0" AnchorPane.rightAnchor="245.60000000000002">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="loginPane" layoutX="10.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" prefHeight="470.0" prefWidth="681.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="19.200000000000045" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="10.0">
+         <children>
+            <Pane fx:id="bgpane" layoutX="93.0" layoutY="17.0" prefHeight="458.0" prefWidth="495.0" AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="93.0" AnchorPane.rightAnchor="93.39999999999998" AnchorPane.topAnchor="17.0">
+               <children>
+                  <PasswordField fx:id="passwordInput" layoutX="72.0" layoutY="334.0" prefHeight="34.0" prefWidth="452.0" promptText="Please Enter Your Password" />
+                  <Button fx:id="loginButton" layoutX="236.0" layoutY="381.0" mnemonicParsing="false" onAction="#login" prefHeight="26.0" prefWidth="131.0" style="-fx-background-radius: 20;" text="Login">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="72.0" layoutY="308.0" text="Password:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Label>
+                  <Button fx:id="signupButton" layoutX="236.0" layoutY="453.0" mnemonicParsing="false" onAction="#gotoSignUp" prefHeight="26.0" prefWidth="131.0" style="-fx-background-radius: 20;" text="Sign Up">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Label alignment="CENTER" layoutX="50.0" layoutY="419.0" prefHeight="17.0" prefWidth="495.0" text="New to AirVista? Sign Up now!" textFill="#11434b" />
+                  <Label alignment="CENTER" layoutX="-4.0" layoutY="140.0" prefHeight="59.0" prefWidth="605.0" text="Welcome Back!" textAlignment="CENTER" textFill="#11434b">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                 <!--  <ImageView fx:id="logo" fitHeight="149.0" fitWidth="200.0" layoutX="230.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@/airvistalogo.png" />
+                     </image>
+                  </ImageView>-->
+                  <Label fx:id="loginErrorlabel" alignment="CENTER" layoutX="2.0" layoutY="199.0" prefHeight="19.0" prefWidth="605.0" text="Invalid Username or Password!" textFill="#961d1d">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="71.0" layoutY="233.0" prefHeight="18.0" prefWidth="150.0" text="Username or Email:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="usernameInput" layoutX="71.0" layoutY="262.0" prefHeight="34.0" prefWidth="454.0" promptText="Please Enter Your Username" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="223.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@airvistalogo.png" />
+                     </image>
+                  </ImageView>
+                 <!--   <ImageView fitHeight="159.0" fitWidth="170.0" layoutX="214.0" layoutY="14.0">
+                     <image>
+                        <Image url="@/airvistalogo.png" />
+                     </image>
+                  </ImageView>-->
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

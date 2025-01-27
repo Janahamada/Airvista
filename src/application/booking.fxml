@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BookingPageController">
+    <children>
+        <!-- Background Image with Blur -->
+        <ImageView fx:id="pane" fitHeight="600.0" fitWidth="800.0" layoutX="-5.0" layoutY="-9.0" preserveRatio="false">
+            <image>
+                <Image url="@../../../../Downloads/airportManagement/airportManagement/.settings/application/airplane5.png" />
+            </image>
+            <effect>
+                <GaussianBlur radius="20" />
+            </effect>
+        </ImageView>
+
+        <!-- Logo -->
+        <ImageView fx:id="img3" fitHeight="82.0" fitWidth="107.0" layoutX="21.0" layoutY="14.0">
+            <image>
+                <Image url="@../../../../Downloads/airportManagement/airportManagement/application/airvistalogo.png" />
+            </image>
+        </ImageView>
+
+        <!-- Secondary Image -->
+        <ImageView fx:id="img1" fitHeight="170.0" fitWidth="204.0" layoutX="279.0" layoutY="96.0">
+            <image>
+            <Image url="@../../../../Downloads/receptionist.png" />
+            </image>
+        </ImageView>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0">
+          <children>
+              <!-- Background Image with Blur -->
+              <ImageView fx:id="pane1" fitHeight="614.0" fitWidth="808.0" layoutX="-5.0" layoutY="-9.0" preserveRatio="false">
+                  <image>
+                      <Image url="@img.jpg" />
+                  </image>
+                  <effect>
+                      <GaussianBlur radius="20" />
+                  </effect>
+              </ImageView>
+      
+              <!-- Main Content on Top -->
+              <TextField fx:id="search1" layoutX="47.0" layoutY="193.0" onAction="#searchBooking" prefHeight="37.0" prefWidth="482.0" promptText="Search for flights" />
+              <Button fx:id="button21" layoutX="644.0" layoutY="536.0" mnemonicParsing="false" onAction="#gotoAddBooking" text="Add booking" />
+              <Button fx:id="button11" layoutX="33.0" layoutY="536.0" mnemonicParsing="false" onAction="#gotocancelBooking" text="Cancel booking" />
+      
+              <!-- Logo -->
+              <ImageView fx:id="img31" fitHeight="82.0" fitWidth="107.0" layoutX="21.0" layoutY="14.0">
+                  <image>
+                      <Image url="@airvistalogo.png" />
+                  </image>
+              </ImageView>
+      
+              <!-- Secondary Image -->
+              <ImageView fx:id="img11" fitHeight="73.0" fitWidth="98.0" layoutX="350.0" layoutY="19.0">
+                  <image>
+                  <Image url="@bookingImg.jpg" />
+                  </image>
+              </ImageView>
+            <TextField fx:id="passengername" layoutX="47.0" layoutY="96.0" prefHeight="37.0" prefWidth="482.0" promptText="enter passenger's name" />
+            <TextField fx:id="passengerphonenumber" layoutX="47.0" layoutY="144.0" prefHeight="38.0" prefWidth="482.0" promptText="enter passenger's phonenumber " />
+            <Label layoutX="47.0" layoutY="249.0" prefHeight="27.0" prefWidth="130.0" text="Passenger ID:">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="savebtn" layoutX="675.0" layoutY="487.0" mnemonicParsing="false" onAction="#savepassengerdata" text="save" />
+            <TableView fx:id="flights" layoutX="50.0" layoutY="298.0" prefHeight="200.0" prefWidth="593.0" style="-fx-background-color: transparent;" />
+            <Label fx:id="idLabel" layoutX="186.0" layoutY="244.0" prefHeight="38.0" prefWidth="274.0">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="73.0" fitWidth="93.0" layoutX="703.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@alert.png" />
+               </image>
+            </ImageView>
+          </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>

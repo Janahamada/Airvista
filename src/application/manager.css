@@ -1,0 +1,85 @@
+#accountsButton {
+	-fx-background-color: transparent;
+	-fx-background-image: url("approve.png");
+	-fx-background-size: 100% 100%; /* Adjusts the image to cover the button */
+    -fx-background-repeat: no-repeat; /* Ensures the image does not repeat */
+    -fx-background-position: center; /* Centers the image on the button */
+    -fx-text-fill: black; 
+    -fx-font-size: 16px; 
+    -fx-border-radius: 20px; 
+    -fx-background-radius: 20px;
+}
+
+#schedulesButton {
+	-fx-background-color: transparent;
+	-fx-background-image: url("calendar.png");
+	-fx-background-size: 100% 100%; /* Adjusts the image to cover the button */
+    -fx-background-repeat: no-repeat; /* Ensures the image does not repeat */
+    -fx-background-position: center; /* Centers the image on the button */
+    -fx-text-fill: black; 
+    -fx-font-size: 16px; 
+    -fx-border-radius: 20px; 
+    -fx-background-radius: 20px;
+}
+
+#reportsButton {
+	-fx-background-color: transparent;
+	-fx-background-image: url("report.png");
+	-fx-background-size: 100% 100%; /* Adjusts the image to cover the button */
+    -fx-background-repeat: no-repeat; /* Ensures the image does not repeat */
+    -fx-background-position: center; /* Centers the image on the button */
+    -fx-text-fill: black; 
+    -fx-font-size: 16px; 
+    -fx-border-radius: 20px; 
+    -fx-background-radius: 20px;
+}
+#approve {
+	-fx-background-color: transparent;
+	-fx-background-image: url("check.png");
+	-fx-background-size: 100% 100%; /* Adjusts the image to cover the button */
+    -fx-background-repeat: no-repeat; /* Ensures the image does not repeat */
+    -fx-background-position: center; /* Centers the image on the button */
+    -fx-text-fill: black; 
+    -fx-font-size: 16px; 
+    -fx-border-radius: 20px; 
+    -fx-background-radius: 20px;
+}
+#reject {
+	-fx-background-color: transparent;
+	-fx-background-image: url("remove.png");
+	-fx-background-size: 100% 100%; /* Adjusts the image to cover the button */
+    -fx-background-repeat: no-repeat; /* Ensures the image does not repeat */
+    -fx-background-position: center; /* Centers the image on the button */
+    -fx-text-fill: black; 
+    -fx-font-size: 16px; 
+    -fx-border-radius: 20px; 
+    -fx-background-radius: 20px;
+}
+
+/*.button {
+    -fx-background-color: #06768d;
+    -fx-text-fill: black; 
+    -fx-font-size: 16px; 
+    -fx-border-radius: 20px; 
+    -fx-background-radius: 20px;
+}*/
+
+/* Hover effect */
+.button:hover {
+    -fx-opacity: 0.6;
+}
+
+/* Pressed effect */
+.button:pressed {
+	-fx-opacity: 0.4;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-row-cell {
+    -fx-background-color: transparent;
+}
+
+

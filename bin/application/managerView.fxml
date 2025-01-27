@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ManagerController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" style="-fx-opacity: 0.6;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@airplane4.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane prefHeight="600.0" prefWidth="147.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="652.8" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="accountsTab" prefHeight="196.0" prefWidth="147.0" style="-fx-background-color: #B3B3B3; -fx-opacity: 0.7;" AnchorPane.bottomAnchor="404.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <AnchorPane fx:id="reportsTab" layoutY="202.0" prefHeight="196.0" prefWidth="147.0" style="-fx-background-color: #B3B3B3; -fx-opacity: 0.7;" AnchorPane.bottomAnchor="202.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="201.60000000000002" />
+            <AnchorPane fx:id="scheduleTab" layoutX="-1.0" layoutY="404.0" prefHeight="196.0" prefWidth="147.0" style="-fx-background-color: #B3B3B3; -fx-opacity: 0.7;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="404.0" />
+            <Button fx:id="accountsButton" layoutX="10.0" layoutY="28.0" mnemonicParsing="false" onAction="#viewAccounts" prefHeight="106.0" prefWidth="126.0" AnchorPane.bottomAnchor="466.40000000000003" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="11.600000000000023" AnchorPane.topAnchor="28.0" />
+            <Button fx:id="schedulesButton" layoutX="21.0" layoutY="470.0" mnemonicParsing="false" onAction="#viewSchedule" prefHeight="86.0" prefWidth="105.0" AnchorPane.bottomAnchor="44.39999999999998" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="21.39999999999999" AnchorPane.topAnchor="470.0" />
+            <Button fx:id="reportsButton" layoutX="10.0" layoutY="246.0" mnemonicParsing="false" onAction="#viewReports" prefHeight="106.0" prefWidth="67.0" AnchorPane.bottomAnchor="247.60000000000002" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.800000000000011" AnchorPane.topAnchor="246.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="accountManagementPane" layoutX="146.4" layoutY="-6.0" prefHeight="612.0" prefWidth="654.0" style="-fx-background-color: transparent; -fx-opacity: 1;" AnchorPane.leftAnchor="146.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="466.0" layoutY="6.0" stroke="#f2ebeb" strokeType="INSIDE" style="-fx-fill: white; -fx-opacity: 0.6;" width="654.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-0.7999999999999545" AnchorPane.rightAnchor="-0.39999999999997726" AnchorPane.topAnchor="146.39999999999998" />
+            <ImageView fitHeight="106.0" fitWidth="140.0" layoutX="547.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="506.0" AnchorPane.leftAnchor="547.0" AnchorPane.rightAnchor="0.1267868041992415" AnchorPane.topAnchor="0.0">
+               <image>
+                  <Image url="@airvistalogo.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="14.0" layoutY="90.0" text="UnApproved Accounts:" textFill="#11434b">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <TableView fx:id="usersTable" editable="true" layoutY="139.0" prefHeight="466.0" prefWidth="654.0" style="-fx-background-color: transparent;" />
+            <Button fx:id="approve" layoutX="356.0" layoutY="90.0" mnemonicParsing="false" onAction="#approve" prefHeight="32.0" prefWidth="46.0" />
+            <Button fx:id="reject" layoutX="425.0" layoutY="90.0" mnemonicParsing="false" onAction="#reject" prefHeight="32.0" prefWidth="46.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
